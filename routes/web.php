@@ -18,3 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'ArticleController@showHome')->name('home');
+Route::get('/regist', 'CompanyController@showCompany')->name('regist');
+Route::get('/regist','ArticleController@showRegistForm')->name('regist');
+Route::get('/regist','CompanyController@showCompanyForm')->name('regist');
+Route::post('/regist','ArticleController@registSubmit')->name('submit');
+Route::post('/regist','CompanyController@registCompanySubmit')->name('submit');
