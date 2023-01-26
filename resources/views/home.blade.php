@@ -22,33 +22,32 @@
                 <table class="table">
                 <thead>
                     <tr>
-                        <th>id</th>
+                        <th>会社のid</th>
                         <th>商品画像</th>
                         <th>商品名</th>
                         <th>価格</th>
                         <th>在庫数</th>
                         <th>メーカー名</th>
                     </tr>
+                     @foreach($products as $product)
+                <tr>
+                    <td>{{$product->company_id}}</td>
+                    <td>{{$product->img_path}}</td>
+                    <td>{{$product->product_name}}</td>
+                    <td>{{$product->price}}</td>
+                    <td>{{$product->stock}}</td>
+                </tr>
+                    @endforeach
+
                 </thead>
                 <tbody>
                 </div>
-                @foreach($product_information as $product)
-                <tr>
-                    <td>{{$product->id}}</td>
-                    <td>{{$product->image}}</td>
-                    <td>{{$product->product_name}}</td>
-                    <td>{{$product->price}}</td>
-                    <td>{{$product->inventory}}</td>
-                    <td>{{$product->manufacture_name}}</td>
-                </tr>
-                @endforeach
-
                 </tbody>
                 </table>
             </div>
         </div>
         
-        <input type="button" onclick="location.href='./'" value="新規登録">
+        <input type="button" onclick="location.href='http://localhost:8888/STEP7/public/regist'" value="新規登録">
         <input type="button" value="削除">
         <input type="button" value="詳細表示">
     </div>
