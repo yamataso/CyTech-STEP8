@@ -21,12 +21,9 @@
                     <label for="company">会社名を選択してください</label>
                    
                     <select class="form-control" name="company" id="company">
-                        @foreach($companies as $company)
-                        <tr>
-                            <td>{{$companies->id}}</td>
-                            <td>{{$companies->company_name}}</td>
-                        </tr>
-                        @endforeach
+                    @foreach($companies as $company)
+                    <option value="{{$company->id}}">{{$company->company_name}}</option>
+                    @endforeach
                     </select>
                  
 
