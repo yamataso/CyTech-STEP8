@@ -16,10 +16,12 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+//データを表示
 Route::get('/home', 'ArticleController@showHome')->name('home');
 Route::get('/regist', 'CompanyController@showCompany')->name('regist');
-Route::get('/regist','ArticleController@showRegistForm')->name('regist');
-Route::get('/regist','CompanyController@showCompanyForm')->name('regist');
+//登録画面を表示
+Route::post('/regist','CompanyController@showCompanyForm')->name('regist');
+
+//ボタンの動作
 Route::post('/regist','ArticleController@registSubmit')->name('submit');
 Route::post('/regist','CompanyController@registCompanySubmit')->name('submit');
