@@ -22,6 +22,10 @@ Route::get('/regist', 'CompanyController@showCompany')->name('regist');
 //登録画面を表示
 Route::post('/regist','CompanyController@showCompanyForm')->name('regist');
 
+//詳細画面を表示
+Route::get('/detail', 'DetailController@showDetail')->name('detail');
+
+
 //ボタンの動作
 Route::post('/regist','ArticleController@registSubmit')->name('submit');
 Route::post('/regist','CompanyController@registCompanySubmit')->name('submit');
