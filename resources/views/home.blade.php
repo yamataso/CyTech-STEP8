@@ -29,8 +29,10 @@
                                 <th>価格</th>
                                 <th>在庫数</th>
                                 <th>メーカー名</th>
+                                <th>詳細ページ</th>
                             </tr>
                         <div>
+                            
                             @foreach($products as $product)
                                 <tr>
                                     <td>{{$product->id}}</td>
@@ -38,14 +40,16 @@
                                     <td>{{$product->product_name}}</td>
                                     <td>{{$product->price}}</td>
                                     <td>{{$product->stock}}</td>
-                                    <td>{{$product->company_id}}</td>
-                                    
+                                    <td>{{$product->company->company_name}}</td>
+                                    <td><img src="{{\Storage::url($product->img_path)}}" alt=""></td>
                                 </tr>
                                 <div class="form-row">
-                                    <input type="button" value="詳細表示">
+                                    </div>
                                 </div>
-                        </div>
-                            @endforeach
+                                @endforeach
+                            <div>
+                            <input type="button" value="詳細表示">
+                            </div>
                         </thead>
                     </div>
                     

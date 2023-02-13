@@ -12,9 +12,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function showHome(){
+        $model = new Product();
+        $products = $model->getHome();
+        return view('home',compact('products'));
     }
 
     /**
@@ -24,6 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        //Company Model
         $model_company = new Company();
         $companies = $model_company->getCompany();
         return view('regist',compact('companies'));
@@ -46,7 +48,7 @@ class ProductController extends Controller
 
         if(request('img_path')){
                 $name = request()->file('img_path')->getClientOriginalName();
-                $file = request()->file('img_path')->move('strage/images',$name);
+                $file = request()->file('img_path')->move('storage/images',$name);
                 $post->img_path=$name;
         }
         $post->save();

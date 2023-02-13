@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class Company extends Model
 {   
-    public function Product(){
+    protected $fillable = [
+        'company_name',
+    ];
+    public function product(){
         return $this->hasMany('App\Models\Product');
     }
     public function getCompany(){
