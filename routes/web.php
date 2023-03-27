@@ -10,19 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
+Route::get('index','ProductController@index')->name('index');
+Route::get('create','ProductController@create');
+Route::get('/show/{id}','ProductController@show')->name('index.show');
+Route::get('/edit/{id}','ProductController@edit')->name('index.edit');
+Route::post('store','ProductController@store')->name('index.store');
+Route::post('/update/{id}','ProductController@update')->name('index.update');
+Route::post('/destroy/{id}','ProductController@destroy')->name('index.destroy');
 
-Route::resource('/post','ProductController');
-
-//
-Route::get('/home', 'ProductController@showHome')->name('home');
-
-
-//詳細画面を表示
-Route::get('/detail', 'DetailController@showDetail')->name('detail');
 
