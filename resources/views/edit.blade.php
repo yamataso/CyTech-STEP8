@@ -1,29 +1,34 @@
 @extends('layouts.app')
 
-@section('title', '投稿画面')
+@section('title', '編集画面')
 
 @section('content')
     <div class="container">
-        <h1>商品情報登録画面</h1>
+        <h1>商品情報編集画面</h1>
         <div class="row">
-            <form class="form-group" action="{{ route('index.store') }}" method="post" enctype="multipart/form-data">
+                <form class="form-group" action="{{ route('index.update',$products->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
+                    <label for="id">商品情報ID</label>
+                    <td>{{optional($products)->id}}</td>
+                </div>
+
+                <div class="form-group">
                     <label for="product_name">商品名</label>
-                    <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Name">
+                    <input value="{{old('product_name',optional($products)->product_name)}}"type="text" class="form-control" id="product_name" name="product_name">
                     @if($errors->has('product_name'))
                     <p>{{ $errors->first('product_name') }}</p>
                     @endif
                 </div>
+ 
+
                 <div class="form-group">
-                    <label for="company">会社名を選択してください</label>
-                
+                    <label for="company">メーカー</label>
                     <select class="form-control" name="company_id" id="company">
                     @foreach($companies as $company)
                     <option value="{{$company->id}}">{{$company->company_name}}</option>
                     @endforeach
                     </select>
-                
                     @if($errors->has('company_id'))
                     <p>{{ $errors->first('company_id') }}</p>
                     @endif
@@ -31,7 +36,7 @@
 
                 <div class="form-group">
                     <label for="price">価格</label>
-                    <input type="text" class="form-control" id="price" name="price" placeholder="Price"  >
+                    <input value="{{old('price',optional($products)->price)}}" type="text" class="form-control" id="price" name="price"  >
                     @if($errors->has('price'))
                     <p>{{ $errors->first('price') }}</p>
                     @endif
@@ -39,7 +44,7 @@
 
                 <div class="form-group">
                     <label for="stock">在庫数</label>
-                    <input type="text" class="form-control" id="stock" name="stock" placeholder="Stock">
+                    <input value="{{old('stock',optional($products)->stock)}}" type="text" class="form-control" id="stock" name="stock" >
                     @if($errors->has('stock'))
                     <p>{{ $errors->first('stock') }}</p>
                     @endif
@@ -47,17 +52,17 @@
 
                 <div class="form-group">
                     <label for="comment">コメント</label>
-                    <textarea class="form-control" id="comment" name="comment" placeholder="Comment"></textarea>
+                    <textarea value="{{old('comment')}}" class="form-control" id="comment" name="comment" >{{optional($products)->comment}}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="title">商品画像</label>
-                    <input type="file" class="form-control" id="img_path" name="img_path" placeholder="Image" >
+                    <label for="img_path">商品画像</label>
+                    <input type="file" class="form-control" id="img_path" name="img_path" placeholder="img_path" >
                 </div>
-
-                <button type="submit" class="btn">登録</button>
+                <button type="submit" class="btn">更新</button>
             </form>
-        </div>
-        <button type="submit" class="btn" onclick="location.href='http://localhost:8888/STEP7/public/index'"  >戻る</button>
+
+            </div>
+            <a href="{{url('show', optional($products)->id)}}" class="button">戻る</a>
     </div>
 @endsection
