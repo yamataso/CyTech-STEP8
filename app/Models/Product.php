@@ -41,4 +41,17 @@ class Product extends Model
             'img_path' => $data->file('img_path')->getClientOriginalName()
         ]);
     }
+    //更新
+    public function updateProduct($data){
+        return $this->where([
+            'id'=> $data['id']
+            ])->update([
+                'product_name' => $data->product_name,
+                'company_id' => $data->company_id,
+                'price' => $data->price,
+                'stock' => $data->stock,
+                'comment' => $data->comment,
+                'img_path' => $data->file('img_path')->getClientOriginalName()
+            ]);
+    }
 }

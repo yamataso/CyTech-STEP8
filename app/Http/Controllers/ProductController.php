@@ -80,33 +80,16 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $products = Product::with('sale')->find($id);
-        $products->product_name = $request->product_name;
-        $products->company_id = $request->company_id;
-        $products->price = $request->price;
-        $products->stock = $request->stock;
-        $products->comment = $request->comment;
-
-        if(request('img_path')){
-            $name = request()->file('img_path')->getClientOriginalName();
-            $file = request()->file('img_path')->move('storage',$name);
-            $products->img_path=$name;
+        try{
+            DB::beginTransaction();
+            $update = new Product();
+            $update->updateProduct($request);
+            DB::commit();
+            return back();
+        }catch(\Exception $e){
+            DB::rollback();
+            return back();
         }
-        $this->validate($request,[
-            'product_name' =>  'required',
-            'company_id' => 'required',
-            'price' => 'required',
-            'stock' => 'required',
-            ],
-                [
-                    'product_name.required' => '商品名は必須項目です。',
-                    'company_id.required' => '会社名は必須項目です。',
-                    'price.required' => '価格は必須項目です。',
-                    'stock.required' => '在庫数は必須項目です。',
-    ]);    
-
-        $products->save();
-        return redirect()->route('index.edit',$products->id);
     }
 
 
