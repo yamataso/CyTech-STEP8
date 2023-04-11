@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Company;
 use App\Models\Sale;
-
+use DB;
 
 class ProductController extends Controller
 {
@@ -47,34 +47,17 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-
+        
+        try {
+            DB::beginTransaction();
             $post = new Product();
-            $post-> product_name = $request->product_name;
-            $post-> company_id = $request->company_id;
-            $post-> price = $request->price;
-            $post-> stock = $request->stock;
-            $post-> comment = $request->comment;
-            if(request('img_path')){
-                $name = request()->file('img_path')->getClientOriginalName();
-                $file = request()->file('img_path')->move('storage',$name);
-                $post->img_path=$name;
-                }
-
-                $this->validate($request,[
-                    'product_name' =>  'required',
-                    'company_id' => 'required',
-                    'price' => 'required',
-                    'stock' => 'required',
-                    ],
-                        [
-                            'product_name.required' => '商品名は必須項目です。',
-                            'company_id.required' => '会社名は必須項目です。',
-                            'price.required' => '価格は必須項目です。',
-                            'stock.required' => '在庫数は必須項目です。',
-            ]);    
-                $post->save();
-
-        return back();
+            $post->registProduct($request);
+            DB::commit();
+            return back();
+            }catch(\Exception $e){
+                DB::rollback();
+                return back();
+            }
     }
 
 

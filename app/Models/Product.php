@@ -24,9 +24,21 @@ class Product extends Model
         'created_at',
         'updated_at',
     ];
+    //取得
     public function getProduct() {
         // productsテーブルからデータを取得
         $products = Product::get();
         return $products;
+    }
+    //登録
+    public function registProduct($data){
+        DB::table('products')->insert([
+            'product_name' => $data->product_name,
+            'company_id' => $data->company_id,
+            'price' => $data->price,
+            'stock' => $data->stock,
+            'comment' => $data->comment,
+            'img_path' => $data->file('img_path')->getClientOriginalName()
+        ]);
     }
 }
