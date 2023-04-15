@@ -26,8 +26,11 @@ class Product extends Model
     ];
     //取得
     public function getProduct() {
-        // productsテーブルからデータを取得
         $products = Product::get();
+    }
+    //詳細ページid取得
+    public function showProduct($id){
+        $products = Product::find($id);
         return $products;
     }
     //登録
