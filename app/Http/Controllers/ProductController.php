@@ -95,8 +95,15 @@ class ProductController extends Controller
 
     public function destroy(Request $request,$id)
     {
-        $products = Product::find($id);
-        $products->delete();
-        return redirect()->route('index');
+        try{
+            DB::beginTransaction();
+            $deleteProduct = new Product();
+            $deleteProduct->deleteProduct($id);
+            DB::commit();
+            return redirect()->route('index');
+        }catch(\Exception $e){
+            DB::rollback();
+            return back();
+        }
     }
 }

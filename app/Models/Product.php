@@ -54,4 +54,9 @@ class Product extends Model
                 'img_path' => $data->file('img_path')->getClientOriginalName()
             ]);
     }
+    //削除
+    public function deleteProduct($id){
+            $products = Product::find($id);
+            $products->delete();
+    }
 }
