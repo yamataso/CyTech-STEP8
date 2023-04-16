@@ -33,6 +33,11 @@ class Product extends Model
         $products = Product::find($id);
         return $products;
     }
+    //編集ページid取得
+    public function editProduct($id){
+        $products = Product::find($id);
+        return $products;
+    }
     //登録
     public function registProduct($data){
         DB::table('products')->insert([
