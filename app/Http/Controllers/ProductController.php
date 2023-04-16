@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Company;
 use App\Models\Sale;
+use App\Http\Requests\ProductRequest;
 use DB;
 
 class ProductController extends Controller
@@ -45,7 +46,7 @@ class ProductController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         
         try {
@@ -79,7 +80,7 @@ class ProductController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
         try{
             DB::beginTransaction();
