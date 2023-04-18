@@ -27,10 +27,10 @@
                                 <td><a href="{{url('edit', $products->id)}}" class="button">編集</a></td>
                             </tr>
                         </table>
+                        <button type="submit" class="btn" onclick="location.href='http://localhost:8888/STEP7/public/index'"  >戻る</button>
                     </div>
                 </div>
         </div>
     </div>
-   <button type="submit" class="btn" onclick="location.href='http://localhost:8888/STEP7/public/index'"  >戻る</button>
 </div>
 @endsection

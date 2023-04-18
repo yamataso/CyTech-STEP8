@@ -58,6 +58,6 @@
                 <button type="submit" class="btn">登録</button>
             </form>
         </div>
-        <button type="submit" class="btn" onclick="location.href='http://localhost:8888/STEP7/public/index'"  >戻る</button>
+        <button type="button" class="btn" onclick="location.href='http://localhost:8888/STEP7/public/index'"  >戻る</button>
     </div>
 @endsection

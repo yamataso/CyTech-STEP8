@@ -18,6 +18,7 @@
                                 @endforeach
                                 </select>
                                 <input type="submit" value="検索">
+                                <input type="button" onclick="location.href='http://localhost:8888/STEP7/public/create'" value="新規登録">
                             </div>
                     </div>
                 </form>
@@ -65,8 +66,6 @@
                     </table>
             </div>
         </div>
-        
-        <input type="button" onclick="location.href='http://localhost:8888/STEP7/public/create'" value="新規登録">
     </div>
 </div>
 @endsection
