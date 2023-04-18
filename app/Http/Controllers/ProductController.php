@@ -16,7 +16,8 @@ class ProductController extends Controller
         $keyword = $request->input('keyword');
         $company_id = $request->input('company_id');
 
-        $product = Product::query();
+        $model_product = new Product();
+        $product = $model_product->getProduct();
 
         if(!empty($keyword)){
             $product->where('product_name','LIKE',"%{$keyword}%")

@@ -26,7 +26,8 @@ class Product extends Model
     ];
     //取得
     public function getProduct() {
-        $products = Product::get();
+        $products = Product::query();
+        return $products;
     }
     //詳細ページid取得
     public function showProduct($id){
