@@ -25,8 +25,18 @@ class Product extends Model
         'updated_at',
     ];
     //取得
-    public function getProduct() {
-        $products = Product::query();
+    public function getProduct($keyword, $company_id) {
+        $product = Product::query();
+    
+        if (!empty($keyword)) {
+            $product->where('product_name', 'LIKE', "%{$keyword}%");
+        }
+    
+        if (!empty($company_id)) {
+            $product->where('company_id', $company_id);
+        }
+    
+        $products = $product->get();
         return $products;
     }
     //詳細ページid取得

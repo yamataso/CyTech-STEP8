@@ -11,30 +11,18 @@ use DB;
 
 class ProductController extends Controller
 {
-    public function index(Request $request){   
+    public function index(Request $request) {
         
         $keyword = $request->input('keyword');
         $company_id = $request->input('company_id');
-
+    
         $model_product = new Product();
-        $product = $model_product->getProduct();
-
-        if(!empty($keyword)){
-            $product->where('product_name','LIKE',"%{$keyword}%")
-            ->where('company_id',$company_id)
-            ->get();
-        }elseif(!empty($company_id)){
-            $product->where('company_id',$company_id)
-            ->get();
-        }
-
-        $products = $product->get(); 
-
+        $products = $model_product->getProduct($keyword, $company_id);
 
         $model_company = new Company();
         $companies = $model_company->getCompany();
 
-        return view('index',compact('products','companies','keyword'));
+        return view('index',compact('products','companies','keyword','company_id'));
     }
 
 
