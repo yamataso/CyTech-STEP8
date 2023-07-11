@@ -15,14 +15,20 @@ class ProductController extends Controller
         
         $keyword = $request->input('keyword');
         $company_id = $request->input('company_id');
+        $min_price = $request->input('min_price');
+        $max_price = $request->input('max_price');
+        $min_stock = $request->input('min_stock');
+        $max_stock = $request->input('max_stock');
+        $sort = $request->input('sort', 'id');
+        $order = $request->input('order', 'asc');
     
         $model_product = new Product();
-        $products = $model_product->getProduct($keyword, $company_id);
+        $products = $model_product->getProduct($keyword, $company_id, $min_price, $max_price, $min_stock, $max_stock, $sort, $order);
 
         $model_company = new Company();
         $companies = $model_company->getCompany();
 
-        return view('index',compact('products','companies','keyword','company_id'));
+        return view('index',compact('products','companies','keyword','company_id', 'min_price', 'max_price', 'min_stock', 'max_stock' ,'sort' ,'order'));
     }
 
 
@@ -83,18 +89,18 @@ class ProductController extends Controller
         }
     }
 
-
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
         try{
             DB::beginTransaction();
             $deleteProduct = new Product();
             $deleteProduct->deleteProduct($id);
             DB::commit();
-            return redirect()->route('index');
+            return response()->json(['success' => true]);
         }catch(\Exception $e){
             DB::rollback();
-            return back();
+            return response()->json(['success' => false]);
         }
     }
+    
 }

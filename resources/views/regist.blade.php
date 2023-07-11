@@ -6,7 +6,7 @@
     <div class="container">
         <h1>商品情報登録画面</h1>
         <div class="row">
-            <form class="form-group" action="{{ route('index.store') }}" method="post" enctype="multipart/form-data">
+            <form class="form-group" action="{{ route('store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="product_name">商品名</label>

@@ -6,7 +6,7 @@
     <div class="container">
         <h1>商品情報編集画面</h1>
         <div class="row">
-                <form class="form-group" action="{{ route('index.update',$products->id) }}" method="POST" enctype="multipart/form-data">
+                <form class="form-group" action="{{ route('update',$products->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="id">商品情報ID</label>

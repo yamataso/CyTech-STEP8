@@ -10,13 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
-Route::get('index','ProductController@index')->name('index');
-Route::get('create','ProductController@create');
-Route::get('/show/{id}','ProductController@show')->name('index.show');
-Route::get('/edit/{id}','ProductController@edit')->name('index.edit');
-Route::post('store','ProductController@store')->name('index.store');
-Route::post('/update/{id}','ProductController@update')->name('index.update');
-Route::post('/destroy/{id}','ProductController@destroy')->name('index.destroy');
+use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Route;
+    Auth::routes();
+    Route::get('index', [ProductController::class, 'index'])->name('index');
+    Route::get('create', [ProductController::class, 'create']);
+    Route::get('/show/{id}', [ProductController::class, 'show'])->name('show');
+    Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('edit');
+    Route::post('store', [ProductController::class, 'store'])->name('store');
+    Route::post('/update/{id}', [ProductController::class, 'update'])->name('update');
+    Route::post('/destroy/{id}', [ProductController::class, 'destroy'])->name('destroy');
+
 
 
